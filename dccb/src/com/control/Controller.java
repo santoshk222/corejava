@@ -3,28 +3,13 @@ package com.control;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.IncorrectResultSizeDataAccessException;
-import org.springframework.jdbc.BadSqlGrammarException;
-import org.springframework.jdbc.IncorrectResultSetColumnCountException;
-import org.springframework.lang.UsesSunHttpServer;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
-
 import com.dao.Dao;
-import com.lowagie.text.Document;
+import com.model.AdminLogin;
 import com.model.SuperAdmin;
 @org.springframework.stereotype.Controller
 
@@ -72,6 +57,36 @@ public class Controller {
 		mav.addObject("logsts", "registered successfully");
 		return mav;
 	}
+	
+	
+	
+	
+	
+	//admin login code here..........................
+	@RequestMapping(value="/loginadmin")
+	public ModelAndView lgsadm(@ModelAttribute ("al") AdminLogin al) {
+		ModelAndView mav=new ModelAndView();
+		System.out.println("Id....."+al.getAdminid());
+		System.out.println("Id....."+al.getUsername());
+		System.out.println("Id....."+al.getPassword());
+		al=dao.adlogin(al);
+		if(al.getAdminid()!=-1){
+			sess.setAttribute("isLogged", "y");
+			sess.setAttribute("lgusr", al);
+			sess.setAttribute("lgusrtyp", "sadm");
+			mav.setViewName("admin");
+			System.out.println("Login Success");
+			mav.addObject("logsts", "registered successfully");
+			return mav;
+		}else{
+			mav.setViewName("adminlogin");
+			System.out.println("Login Failed");
+			mav.addObject("errmsg", "login Failed");
+			return mav;
+		}
+	}
+	
+	
 	
 	@RequestMapping(value="/lgsadm")
 	public ModelAndView lgsadm(@ModelAttribute ("sa") SuperAdmin sa) {

@@ -13,6 +13,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 
 import com.control.HibernateUtilities;
+import com.model.AdminLogin;
 import com.model.SuperAdmin;
 
 public class Dao {
@@ -63,6 +64,36 @@ public class Dao {
 		}catch(Exception exc){
 			System.out.println("Error: "+exc.getMessage());
 			return new SuperAdmin(-1);
+			
+		}finally {
+			session.close();
+		}
+	}
+	
+	
+	
+	//Admin dao code here..........................
+	public AdminLogin adlogin(AdminLogin al) {
+		System.out.println("Db called.....");
+		session=sessionFactory.openSession();
+		AdminLogin sa2=new AdminLogin(-1,"","");
+		try{
+			System.out.println("try called.....");
+			session.beginTransaction();
+			sa2=(AdminLogin)session.createQuery("from AdminLogin where username=:e").setParameter("e", al.getUsername()).uniqueResult();
+			System.out.println("sa2: "+sa2.getAdminid());
+			if(al.getPassword().equals(sa2.getPassword())){
+				System.out.println("If db called");
+				return sa2;
+			}else{
+				sa2.setAdminid(-1);
+				System.out.println("else db called");
+				return sa2;
+			}
+		}catch(Exception exc){
+			System.out.println("catch Error: ");
+			exc.printStackTrace();
+			return new AdminLogin(-1,"","");
 			
 		}finally {
 			session.close();

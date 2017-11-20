@@ -71,10 +71,10 @@
 			<div class="container">
 				<div class="banner-inner">
 					<div class="col-md-5 banner-left">
-						<form action="lgadm" method="post">
+						<form action="loginadmin" method="post">
 						<h3>Admin Login</h3>
 							
-							<input type="email" name="email" placeholder="Your mail" required=""/>
+							<input type="text" name="username" placeholder="User name" required=""/>
 							<input type="password" name="password" placeholder="password" required=""/>
 							
 							<div class="submit">
