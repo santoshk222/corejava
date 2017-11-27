@@ -6,6 +6,7 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
 
+import com.model.AdminLogin;
 import com.model.BBranch;
 import com.model.Branch_Scale;
 import com.model.Country;
@@ -25,6 +26,7 @@ public class HibernateUtilities {
 			serviceRegistry = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties()).build();
 			
 			configuration.addAnnotatedClass(SuperAdmin.class);
+			configuration.addAnnotatedClass(AdminLogin.class);
 			configuration.addAnnotatedClass(Country.class);
 			configuration.addAnnotatedClass(BBranch.class);
 			configuration.addAnnotatedClass(Branch_Scale.class);
