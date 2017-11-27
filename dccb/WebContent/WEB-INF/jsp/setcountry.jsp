@@ -33,7 +33,9 @@
 	
 	<section class="skills" id="skills">
 	<div class="container">	
-	<div class='clearfix'></div>
+	<div class='clearfix'>
+	country
+	</div>
 	</div>
 	
 	

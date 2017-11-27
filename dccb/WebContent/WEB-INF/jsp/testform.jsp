@@ -1,13 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-    
-    
- <%try{
-	 String isl=session.getAttribute("isLogged").toString();
-	 String lgusr=session.getAttribute("lgusrtyp").toString();
-	 if(isl=="y" && lgusr=="sadm"){
-%>		 
-   
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -33,69 +25,72 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 <jsp:include page="sadmbar.jsp"></jsp:include>
 	<div class="agile-header">
 		<h1>New Branch regstration from</h1>
-		${rsts}
+		
 	</div>
 	<!--//header-->
 	<!--main-->
 	<div class="agileits-main">
 		<div class="wrap">
-		<form action="/dccb/rnbb" method="post">
-			<!-- <ul>
-				<li class="text">Branch ID:  :  </li>
-				<li><input name="BRANCH_ID" type="text" required disabled="disabled"></li>
-			</ul>
- -->			<ul>
-				<li class="text">Branch name  :  </li>
-				<li><input name="BRANCH_NAME" type="text" required></li>
+		<form action="#" method="post">
+			<ul>
+				<li class="text">name  :  </li>
+				<li><input name="name" type="text" required></li>
 			</ul>
 			<ul>
-				<li class="text"> Location  :  </li>
-				<li><input name="LOCATION" type="text" required></li>
+				<li class="text">organization  :  </li>
+				<li><input name="organization" type="text" required></li>
+			</ul>
+			<ul>
+				<li class="text">E-mail  :  </li>
+				<li><input name="E-mail" type="text" required></li>
 			</ul>
 			<ul>
 				<li class="text">contact no  :  </li>
 				<li><input name="contact" type="text" required></li>
 			</ul>
 			<ul>
-				<li class="text">Admin ID  :  </li>
-				<li><input name="ADMIN_ID" type="text" required></li>
+				<li class="text">mobile no  :  </li>
+				<li><input name="mobile" type="text" required></li>
 			</ul>
 			<ul>
-				<li class="text">Country  :  </li>
-				<li><input name="COUNTRY_COUNTRY_ID" type="text" required></li>
+				<li class="text">fax  :  </li>
+				<li><input name="fax" type="text" required></li>
 			</ul>
 			<ul>
-				<li class="text">State  :  </li>
-				<li><input name="STATE_STATE_ID" type="text" required></li>
+				<li class="text">address 1  :  </li>
+				<li><input name="addr 1" type="text" required></li>
 			</ul>
 			<ul>
-				<li class="text"> Branch Scale  :  </li>
-				<li><input name="BRANCH_SSCALE_SCALE_ID" type="text" required></li>
+				<li class="text">address 2  :  </li>
+				<li><input name="addr 2" type="text" required></li>
+			</ul>
+			<ul>
+				<li class="text">country  :  </li>
+				<li><input name="country" type="text" required></li>
+			</ul>
+			<ul>
+				<li class="text">state  :  </li>
+				<li><input name="state" type="text" required></li>
+			</ul>
+			<ul>
+				<li class="text">city  :  </li>
+				<li><input name="city" type="text" required></li>
 			</ul>
 			<ul>
 				<li class="text">zip/pin code  :  </li>
 				<li><input name="pin" type="text" required></li>
 			</ul>
 			<ul>
-				<li class="text">Extra info :  </li>
+				<li class="text">sales inquiry  :  </li>
 				<li><textarea></textarea></li>
 			</ul>
 			<div class="clear"></div>
 			<div class="agile-submit">
-				<input type="submit" value="Register">
-				<input type="reset" value="Reset">
+				<input type="submit" value="submit">
+				<input type="reset" value="reset">
 			</div>
 			</form>
 		</div>	
 	</div>
 </body>
-</html>	
-<%}
-	 else{
-		response.sendRedirect("/dccb/sadm");
-	 	}
-	}
-	catch(NullPointerException npe){
-	 response.sendRedirect("/dccb/sadm");
-}
-%>
+</html>

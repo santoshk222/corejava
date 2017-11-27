@@ -28,6 +28,16 @@
    								</ul>
 							</li>	
 							<li><a href="/dccb/reports" class="">Reports</a></li>
+							<li class="dropdown">
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown">Setups
+									<span class="caret"></span></a>
+								<ul class="dropdown-menu">	
+        					 		<li><a href="/dccb/setup_country">Country</a></li>
+     								<li><a href="/dccb/setup_state">State</a></li>
+     								<li><a href="/dccb/setup_dist">District</a></li>
+     								<li><a href="/dccb/setup_branch_scale">Branch Scale</a></li>        
+     							</ul>
+							</li>
 						</ul>
 					</div>
 				</div>

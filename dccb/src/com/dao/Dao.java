@@ -13,7 +13,11 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 
 import com.control.HibernateUtilities;
+
+import com.model.BBranch;
+
 import com.model.AdminLogin;
+
 import com.model.SuperAdmin;
 
 public class Dao {
@@ -68,6 +72,20 @@ public class Dao {
 		}finally {
 			session.close();
 		}
+	}
+	public void savenb(BBranch nb) {
+		session=sessionFactory.openSession();
+		try{
+		session.beginTransaction();
+		session.save(nb);
+		session.getTransaction().commit();
+		}catch(Exception exc)
+		{
+			System.out.println(exc.getStackTrace());
+		}finally {
+			session.close();
+		}
+		
 	}
 	
 	

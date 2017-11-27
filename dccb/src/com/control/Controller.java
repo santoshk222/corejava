@@ -9,7 +9,12 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import com.dao.Dao;
+
+import com.lowagie.text.Document;
+import com.model.BBranch;
+
 import com.model.AdminLogin;
+
 import com.model.SuperAdmin;
 @org.springframework.stereotype.Controller
 
@@ -24,10 +29,7 @@ public class Controller {
 	public ModelAndView indn() {
 		return new ModelAndView("redirect:/index");
 	}
-	@RequestMapping("loginpage")
-	public ModelAndView loginpage() {
-		return new ModelAndView("loginpage");
-	}
+	
 	//Write Home page code here...............................
 	@RequestMapping("/index")
 	public ModelAndView ind() {
@@ -43,6 +45,24 @@ public class Controller {
 	@RequestMapping("/sadm")
 	public ModelAndView sadms()
 	{
+		
+		System.out.println("Session null= ");
+		try{
+			String s1=sess.getAttribute("isLogged").toString();
+			System.out.println(s1);
+		}catch(NullPointerException npe)
+		{
+			sess.setAttribute("isLogged", "n");
+		}
+		try{
+			String s1=sess.getAttribute("lgusrtyp").toString();
+			System.out.println(s1);
+		}catch(NullPointerException npe)
+		{
+			sess.setAttribute("lgusrtyp", "n");
+		}
+		sess.setAttribute("sadms","y");
+		sess.setAttribute("adms","n");
 		mav.addObject("sadms", "y");
 		mav.addObject("adms", "n");
 		mav.addObject("logsts", "");
@@ -105,7 +125,21 @@ public class Controller {
 		}
 	}
 	
-	
+	@RequestMapping(value="/rnbb")
+	public ModelAndView rnbb(@ModelAttribute ("nb") BBranch nb)
+	{
+		dao.savenb(nb);
+		mav.setViewName("nbb_rfrm");
+		mav.addObject("rsts", "registered successfully");
+		return mav;
+	}
+	@RequestMapping(value="addnbb")
+	public ModelAndView addnbb()
+	{
+		/*mav=new ModelAndView();*/
+		mav.setViewName("nbb_rfrm");
+		return mav;
+	}
 	
 	
 	@RequestMapping("/sadmnhmpg")
@@ -125,13 +159,15 @@ public class Controller {
 		mav.setViewName("redirect:/sadm");
 		return mav;
 	}
-	
-	@RequestMapping(value="addnbb")
-	public ModelAndView addnbb()
+			/*-------------------------------------------*/
+	@RequestMapping("/setup_country")
+	public ModelAndView setc()
 	{
-		mav.setViewName("nbb_rfrm");
+		mav.setViewName("setcountry");
 		return mav;
+		
 	}
+	
 	
 //------------------------------------------------------------------
 	@RequestMapping("/adm")

@@ -1,16 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-<% if(session.getAttribute("isLogged")=="y")
-	if(session.getAttribute("lgusrtyp")=="sadm")
-		response.sendRedirect("/dccb/sadmnhmpg");%>	
-
+<%try{
+	 String isl=session.getAttribute("isLogged").toString();
+	 String lgusr=session.getAttribute("lgusrtyp").toString();
+	 if(isl!="y" ){
+%>
 
 <!DOCTYPE html>
 <html lang="en">
 <!-- Head -->
 <head>
-<title>CosMos Co-operative Bank </title>
+<title>Bank</title>
 <jsp:include page="allcss.jsp"></jsp:include>
 <!-- scrolling script -->
 <script type="text/javascript">
@@ -27,7 +28,6 @@
 <!-- Body -->
 <body>
 	<jsp:include page="head.jsp"></jsp:include>
-	
 	<c:set var="adms" value="${adms}"></c:set>
 	<c:set var="sadms" value="${sadms }"></c:set>
 	<c:if test="${sadms =='y'}">
@@ -38,10 +38,8 @@
 					 ${errmsg}
 						<form action="lgsadm" method="post">
 						<h3>Super Admin Login</h3>
-							
 							<input type="email" name="email" placeholder="Your mail" required=""/>
 							<input type="password" name="password" placeholder="password" required=""/>
-							
 							<div class="submit">
 								<input type="submit" value="Login">
 							</div>
@@ -73,27 +71,40 @@
 					<div class="col-md-5 banner-left">
 						<form action="loginadmin" method="post">
 						<h3>Admin Login</h3>
-							
-							<input type="text" name="username" placeholder="User name" required=""/>
+<<<<<<< HEAD
+							<input type="email" name="email" placeholder="Your mail" required=""/>
 							<input type="password" name="password" placeholder="password" required=""/>
-							
 							<div class="submit">
 								<input type="submit" value="Login">
 							</div>
 						</form>
 					</div>
-					
 					</div>
 					<div class="clearfix"></div>
 				</div>
 				<div class="clearfix"></div>
 			</div>
-		
 		</c:if>
-
-<!-- //our blog -->
 <jsp:include page="foot.jsp"></jsp:include>
 </body>
 <!-- //Body -->
 </html>
-<!-- //html -->
+
+<%}
+	 
+	 else if(isl=="y" && lgusr=="sadm"){
+		 response.sendRedirect("/dccb/sadmnhmpg");
+	 	}
+	 else if(isl=="y" && lgusr=="adm"){
+		 response.sendRedirect("/dccb/admnhmpg");
+	 }
+ 	}
+	catch(Exception npe){
+		String sadms=session.getAttribute("sadms").toString();
+		 String adms=session.getAttribute("adms").toString();
+		 if(sadms=="y")
+			 response.sendRedirect("/dccb/index");
+			out.print("NullPointerMessage: "+npe);
+	 		//response.sendRedirect("/dccb/index");
+	}
+%>
